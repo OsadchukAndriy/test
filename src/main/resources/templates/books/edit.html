@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update book</title>
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+            var selectedOption = $("#locales").val();
+            if (selectedOption != '') {
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
+
+<body>
+
+<section class="section">
+
+    <div class="wrapper">
+
+        <div class="form">
+            <h1 class="midlText" th:text="#{edit.title}"></h1>
+
+            <form th:method="PUT" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
+
+                <div class="col-50">
+                    <label class="midlText" for="name" th:text="#{edit.bookName}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{name}" id="name"/>
+                    <div class="warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
+                </div>
+
+                <div class="col-50">
+                    <label class="midlText" for="yearOfRealise" th:text="#{edit.year}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
+                    <div class="warning" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">
+                        yearOfRealise Error
+                    </div>
+                </div>
+
+                <div class="col-50">
+                    <label class="midlText" for="author" th:text="#{edit.author}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{author}" id="author"/>
+                    <div class="warning" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error
+                    </div>
+                </div>
+
+                <input class="bigButton" type="submit" th:value="#{edit.update}"/>
+
+            </form>
+
+            <form th:method="GET" th:action="@{/}">
+                <input class="bigButton" type="submit" th:value="#{return}"/>
+            </form>
+
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,15 @@
+.confirm-popup {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+.confirm-popup p {
+    margin: 0;
+}
+
+.confirm-popup .button-wrapper {
+    text-align: right;
+    margin-top: 10px;
+}
